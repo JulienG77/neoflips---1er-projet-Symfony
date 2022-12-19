@@ -1,0 +1,22 @@
+{% extends 'base2.html.twig' %}
+
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/accButtons.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/css/acc.css') }}">
+{%  endblock %}
+
+{% block title %}Créer Nouveau User{% endblock %}
+
+{% block body %}
+    <div style="display:flex;flex-direction: column;text-align: center;align-items: normal;vertical-align: center;font-weight: bold">
+    <h1 style="font-size: 42px;text-decoration-line: underline;font-weight: bolder;margin-bottom: 20px">Créer nouvel utilisateur :</h1>
+
+    {{ include('user/_form.html.twig') }}
+
+    <a style="margin-top: 20px;margin-bottom: 20px;display: flex;align-content: center;align-items: center;justify-content: center" class="btn btn-secondary container-fluid" href="{{ path('app_user_index') }}">Retour à la liste</a>
+    </div>
+
+{% endblock %}

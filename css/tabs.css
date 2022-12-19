@@ -1,0 +1,307 @@
+/******* Carte PREZ ********/
+#base{
+    width: 100%;
+    height: 100%;
+    top:56px;
+    position: absolute;
+    z-index: 2;
+    animation: base 4s 1;
+    transition: 0.6s ease-in-out;
+}
+@keyframes base{0%{transform:translate3d(-10px,-100px,0)}100%{transform:translate3d(0,0,0)}}
+
+#txt1{
+    top:65px;
+    left: 0px;
+    right: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    z-index: 3;
+    animation: txt11 6s 1;
+    transition:  0.9s ease-in-out;
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
+
+@keyframes txt11{0%{transform:translate3d(10px,200px,0)}100%{transform:translate3d(0,0,0)}
+    0%    { opacity: 0; }
+    20%   { opacity: 0; }
+    30%   { opacity: 1; }
+    50%   { opacity: 1; }
+    80%   { opacity: 1; }
+    100%  { opacity: 1; }
+}
+
+
+#txt2{
+    top:65px;
+    left: 0px;
+    right: 0px;
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    z-index: 4;
+    animation: txt22 6s 1;
+    transition:  0.6s ease-in-out;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+@keyframes txt22 {0%{transform:translate3d(-10px,20px,0)}100%{transform:translate3d(0,0,0)}
+    0%    { opacity: 0; }
+    20%   { opacity: 0; }
+    80%   { opacity: 0; }
+    100%  { opacity: 1; }
+}
+
+#logoss{
+    top:66px;
+    left: 0px;
+    right: 0px;
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 80%;
+    position: absolute;
+    z-index: 4;
+    animation: logoss 11s 1;
+    transition:  1s ease-in-out;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+@keyframes logoss {
+    0%    { opacity: 0; }
+    10%    { opacity: 0; }
+    20%   { opacity: 0; }
+    50%   { opacity: 0; }
+    80%   { opacity: 1; }
+    100%  { opacity: 1; }
+}
+
+@media screen and (min-width: 425px) {
+    #txt1, #txt2, #logoss{
+        width: 55%;
+        height: auto;
+        margin-top: 10px;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    #txt1, #txt2, #logoss{
+        top: 70px;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+    #txt1, #txt2, #logoss{
+    top: 80px;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #txt1, #txt2, #logoss{
+        top: 110px;
+    }
+}
+
+@media screen and (min-width: 2000px){
+    #txt1, #txt2, #logoss{
+        top: 200px;
+    }
+}
+@media screen and (min-width: 3000px){
+    #txt1, #txt2, #logoss{
+        top: 300px;
+    }
+}
+
+
+/**** FX Curve Carte Prez ***
+#tab1::after{
+    transition:1s ease-in-out;
+    content: '';
+    z-index: 3;
+    position: absolute;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    background-position: -140px;
+    background: radial-gradient(
+            circle farthest-side at 0 0,
+            rgba(255,255,255,0) 90%,
+            rgba(0, 25, 97, 0.88) 98%,
+            rgba(255,255,255,0) 100%
+    ) no-repeat;
+}
+
+#tab1:hover::after,
+#tab1:focus::after{
+    transition: background-position 1s;
+    background-position: 25px 0;
+}
+*/
+/**************************/
+
+/****** IMAGES TABS **********/
+.tab {
+    float: left;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.8s;
+}
+.tab img {
+    width: 100%;
+    height: 100%;
+    background-size: calc(100% + 50px);
+}
+.tab-headline {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+.tab-headline p {
+
+    border: 4px solid rgba(255,255,255,1);
+    font-size: 100px;
+    color: rgba(255,255,255,1);
+    padding-left: 30px;
+    padding-right: 30px;
+    font-weight: 300;
+    margin: 0px;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -o-transition: all 0.5s;
+    transition: all 0.5s;
+    color: white;
+    background:
+            linear-gradient(90deg, #ae7033 50%,#000 0)
+            var(--_p,100%)/200% no-repeat;
+var(--.tab-headline,100%)/200% no-repeat;
+    -webkit-background-clip: text;
+ /*   background-clip: text; */
+    background-clip: border-box;
+    transition: .7s;
+}
+.tab-headline p:hover {
+    border: 4px solid rgba(55, 55, 55, 0.83);
+    cursor: pointer;
+    color: #373737;
+    transition: 0.6s;
+    --_p: 0%;
+}
+
+.tab-button{
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    background-color: #282b34;
+    margin-right: 30px;
+    margin-left: 30px;
+}
+.tab-button a {
+    color: rgba(255,255,255,1);
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+}
+.tab-button:hover .tab-button-icon{
+    background-color: #0093fd;
+}
+.tab-button:hover .tab-button-text{
+    background-color: #3D414E;
+}
+.tab-button-icon{
+    float: left;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    background-color: rgba(198, 114, 35, 0.89);
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    -o-transition: background 0.5s;
+    transition: background 0.5s;
+}
+.tab-button-icon a {
+
+    font-size: 25px;
+}
+.tab-button-text{
+    float: left;
+    height: 60px;
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    -o-transition: background 0.5s;
+    transition: background 0.5s;
+}
+.tab-button-text a {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+/********  TEST IMAGE MOV BACK HOVER **********/
+.overlay{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(9, 9, 9, 0.76);
+    position: relative;
+    z-index: 3;
+}
+
+/*** Boutons Apropos etc ****/
+.overP{
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    z-index: 4;
+}
+/************************/
+
+#top-image {
+    /**	background:url('https://www.itl.cat/pngfile/big/296-2963070_awesome-blur-free-wallpaper-id-blur-background.jpg') -25px -50px; **/
+    background: url("../_assets/Card1/BaseAlt.png") -25px -25px;
+    position:absolute ;
+    top:0;
+    width:100%;
+    z-index:0;
+    height:100%;
+   background-size: calc(100% + 50px);
+}
+
+#top-image2 {
+    background:url('https://c0.wallpaperflare.com/preview/436/754/340/seventy-capt-fantastic-vintage-game.jpg') -25px -50px;
+    position:absolute ;
+    top:0;
+    width:100%;
+    z-index:0;
+    height:100%;
+    background-size: calc(100% + 50px);
+}
+
+#top-image3 {
+ /**   background:url('https://wallpaperaccess.com/full/622523.jpg') -25px -50px; **/
+    background:url("../_assets/neon2.jpg") -25px -50px;
+    position:absolute ;
+    top:0;
+    width:100%;
+    z-index:0;
+    height:100%;
+    background-size: calc(100% + 50px);
+}
+
+#top-image4 {
+ /**   background:url('https://wallpaperaccess.com/full/622523.jpg') -25px -50px; **/
+    background:url("../_assets/neonAlt.jpg") -25px -50px;
+    position:absolute ;
+    top:0;
+    width:100%;
+    z-index:0;
+    height:100%;
+    background-size: calc(100% + 50px);
+}

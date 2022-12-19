@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}The Pincab Wizards{% endblock %}</title>
+        <link rel="icon"
+              href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    </head>
+    <body>
+    <header>
+        <div class="collapse"  id="navbarHeader"
+             style="background-image: url({{ asset('assets/img/bnrgif.gif') }});
+                     background-repeat: no-repeat;
+                     background-size: cover;
+                     font-family: 'Signika Negative', sans-serif;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-md-7 py-4"
+                         style="border-style: double;
+                                border-color: #b3d7ff;
+                                ">
+
+                        <h4 class="text-center"
+                            style="color: whitesmoke;
+                            text-decoration-line: underline;
+                            margin-bottom: 20px;">
+                            Qui sommes nous?
+                        </h4>
+                        <p class="text-center"
+                           style="color: #0dcaf0;
+                                font-size: 25px;">
+                            Neoflips a été fondé en 2016 par X et Y...
+                            Et quasi quia in omnis corporis 33 expedita necessitatibus qui nihil aliquam sit eligendi doloremque est eaque sunt?
+                            Et galisum dolore vel quaerat enim aut odio dolorem. Sed esse magnam hic sint facilis ea numquam harum sed magnam ratione aut sequi voluptate sit consequatur quidem.
+                            Aut velit delectus sed  ea numquam harum sed magnam ratione aut sequi voluptate sit consequatur quidem.
+                        </p>
+                    </div>
+                    <div class="col-sm-4 md-1 py-4" style="text-align: center;">
+                        <h4 style="color: #b3d7ff"
+                            class="text">
+                            <h4 style="border-style: double;
+                            color: #b3d7ff;
+                            font-size: 32px">
+                                Contactez Nous:<br>
+                            </h4>
+                            <a style="font-weight: bolder;
+                                font-size: 20px"
+                               href="mailto:Neoflips@gmail.com"
+                               target="_blank">Mail @NeoFlips.
+                            </a>
+                        </h4><br>
+                        <ul class="list-unstyled"
+                            style="text-align: center;
+                                   font-weight: bolder;
+                                   font-size: 22px">
+                          <h4 style="color: #b3d7ff;
+                          border-style: double;
+                          font-size: 32px">
+                              Raccourcis vers les pages:
+                          </h4>
+                            {%  if is_granted('ROLE_ADMIN') %}
+                                <li><a href="{{ path('app_accueil') }}">Accueil</a></li>
+                                <li><a href="{{ path('app_user_index') }}">Users</a></li>
+                                <li><a href="{{ path('app_product_index') }}">Produits</a></li>
+                                <li><a href="{{ path('app_category_index') }}">Categorie</a></li>
+                                <li><a href="{{ path('mycart') }}">Panier</a></li>
+                                <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                                <h4 style="color:  #b3d7ff;
+                                border-style: double;
+                                font-size: 32px">
+                                    Catégories:
+                                </h4>
+                                {% for category in categories %}
+                                    <li><a href="{{ path('frontcategory', {id: category.id }) }}" class="text-white">{{ category.name }}</a></li>
+                                {% endfor %}
+                            {% elseif is_granted('ROLE_USER') %}
+                                <li><a href="{{ path('app_accueil') }}">Accueil</a></li>
+                                <li><a href="{{ path('app_category_index') }}">Categorie</a></li>
+                                <li><a href="{{ path('app_logout') }}">Déconnexion</a></li>
+                                <li><a href="{{ path('mycart') }}">Mon Panier</a></li>
+                            {% else %}
+                                <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                                <li><a href="{{ path('inscription') }}">Inscription</a></li>
+                                <li><a href="{{ path('mycart') }}">Mon Panier</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar navbar-dark bg-dark shadow-sm"
+             style=" background: linear-gradient(175deg, rgba(12,12,12,1) 7%, rgba(133,131,135,1) 99%);">
+            <div class="container d-flex justify-content-between">
+                <a href="{{ path('app_accueil') }}"
+                   class="navbar-brand d-flex align-items-center">
+                    <img src="{{ asset('assets/img/pnblanc.png') }}"
+                         width="36" height="30"
+                         fill="none"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         stroke-width="2"
+                         aria-hidden="true"
+                         class="mr-2">
+                    <strong style="margin-left: 10px;
+                    font-family: 'Lobster', cursive;">
+                        Neoflips: Pincab Wizards
+                    </strong>
+                </a>
+                <button class="navbar-toggler"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarHeader"
+                        aria-controls="navbarHeader"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                        style="background: linear-gradient(180deg, rgba(12,12,12,1) 7%, rgba(133,131,135,1) 80%);
+                              border-radius: 10%;
+                        ">
+                       <!-- style="background: linear-gradient(175deg, rgba(12,12,12,1) 7%, rgba(133,131,135,1) 99%);">-->
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    {%  for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+    {% endfor %}
+
+    {% block body %}{% endblock %}
+
+        <footer class="py-5" style=" background: rgb(78,52,102);
+              margin-top: 0px;
+              max-height: 75%;
+            background: radial-gradient(circle, rgba(29,49,84,1) 58%, rgba(36,0,109,1) 77%, rgba(3,3,7,0.9244164218421744) 100%);">
+
+            <div class="row" style="
+                    height: 250px;
+                    text-align: center;
+                    vertical-align: center;
+                    background: url({{ asset('assets/img/videos/GIF/colorfulbar.gif') }});
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    margin-bottom: 0px;
+                    padding: 0%;
+                    margin-top: 0px">
+                <div class="col-2" >
+                    <h5 style="margin-top: 30px">Section</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-2">
+                    <h5 style="margin-top: 30px">Section</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-2">
+                    <h5 style="margin-top: 30px">Section</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-4 offset-1">
+                    <form>
+                        <h5 style="margin-top: 30px">Subscribe to our newsletter</h5>
+                        <p>Monthly digest of whats new and exciting from us.</p>
+                        <div class="d-flex w-100 gap-2">
+                            <label for="newsletter1" class="visually-hidden">Email address</label>
+                            <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                        </div>
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between py-4 my-4 border-top">
+                <p style="text-align: center;vertical-align:center;margin-top: auto">&copy; 2022 NEOFLIPS.COM, Inc. Tous droits réservés.</p>
+                <ul class="list-unstyled d-flex">
+                    <p style="justify-items: center;margin-top: auto">&copy; @Contact Mr.X, Twitter.</p>
+                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+                    <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+                </ul>
+                <p style="text-align: center;margin-top: auto">&copy; 2022 NEOFLIPS.COM, Inc. Tous droits réservés.</p>
+            </div>
+            <div class="d-flex justify-content-between py-4 my-4 border-top"></div>
+        </footer>
+    </div>
+
+    {% block javascripts %}
+        <script src="{{ asset('assets/js/pop-up-gallery1.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery-2.1.4.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+    {% endblock %}
+    <script>
+        var typed = new Typed('#typed', {
+            stringsElement: '#typed-strings'
+        });
+    </script>
+    <script>
+        var typed2 = new Typed('#typed2', {
+            stringsElement: '#typed-strings2'
+        });
+    </script>
+    <script>
+        let lastScrollTop = 0;
+        navbar = document.getElementById('navbarHeader');
+
+        window.addEventListener('scroll' , function()
+        {
+            const scrollTop = this.window.pageTOffset ||
+                this.document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop) {
+                navbar.style.top="-50px";
+            } else {
+                navbar.style.top="0";
+            }
+            lastScrollTop = scrollTop;
+        });
+
+    </script>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+{% extends 'base2.html.twig' %}
+
+  {% block stylesheets %}
+      {{ encore_entry_link_tags('app') }}
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="{{ asset('assets/css/acc.css') }}">
+      <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+  {% endblock %}
+
+{% block title %} Index utilisateurs{% endblock %}
+
+{% block body %}
+    <body style="background: linear-gradient(180deg, rgba(50,46,82,1) 0%, rgba(55,28,134,1) 89%, rgba(0,32,148,1) 100%);">
+<section>
+        {% for user in users %}
+            <table class="table-bordered"style="display:flex;justify-content: center;">
+
+            <tbody id="tabprod" style="display: flex;flex-direction: column;margin-top: 20px">
+            <tr style="font-weight: bolder;">
+                <th style="text-decoration-line: underline;display: flex;flex-wrap: wrap;flex-direction: column;align-items: center;color: whitesmoke;background: linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(0,23,107,1) 100%);" scope="col">ID:</th>
+                <td  style="background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(193,193,193,1) 100%);display: flex;flex-wrap: wrap;flex-direction: column;align-items: center">{{ user.id }}</td>
+                <th style="text-decoration-line: underline;display: flex;flex-wrap: wrap;flex-direction: column;align-items: center;color: whitesmoke;background: linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(0,23,107,1) 100%);" scope="col">EMAIL:</th>
+                <td  style="background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(193,193,193,1) 100%);display: flex;flex-wrap: wrap;flex-direction: column;align-items: center">{{ user.email }}</td>
+                <th style="text-decoration-line: underline;display: flex;flex-wrap: wrap;flex-direction: column;align-items: center;color: whitesmoke;background: linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(0,23,107,1) 100%);" scope="col">ROLES:</th>
+                <td  style="background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(193,193,193,1) 100%);display: flex;flex-wrap: wrap;flex-direction: column;align-items: center">{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <th style="text-decoration-line: underline;display: flex;flex-wrap: wrap;flex-direction: column;align-items: center;color: whitesmoke;background: linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(0,23,107,1) 100%);" scope="col">PASSWORD:</th>
+                <td style="background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(193,193,193,1) 100%);display: flex;flex-wrap: wrap;flex-direction: column;align-items: center">{{ user.password }}</td>
+                <th style="text-decoration-line: underline;display: flex;flex-wrap: wrap;flex-direction: column;align-items: center;color: whitesmoke;background: linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(0,23,107,1) 100%);" scope="col">NOM:</th>
+                <td style="background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(193,193,193,1) 100%);display: flex;flex-wrap: wrap;flex-direction: column;align-items: center">{{ user.nom }}</td>
+                <th style="text-decoration-line: underline;display: flex;flex-wrap: wrap;flex-direction: column;align-items: center;color: whitesmoke;background: linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(0,23,107,1) 100%);" scope="col">PRENOM:</th>
+                <td style="background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(193,193,193,1) 100%);display: flex;flex-wrap: wrap;flex-direction: column;align-items: center">{{ user.prenom }}</td>
+                <th style="text-decoration-line: underline;display: flex;flex-wrap: wrap;flex-direction: column;align-items: center;color: whitesmoke;background: linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(0,23,107,1) 100%);" scope="col">PSEUDO:</th>
+                <td style="background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(193,193,193,1) 100%);display: flex;flex-wrap: wrap;flex-direction: column;align-items: center">{{ user.username }}</td>
+                <th style="text-decoration-line: underline;display: flex;flex-wrap: wrap;flex-direction: column;align-items: center;;color: whitesmoke;background: linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(0,23,107,1) 100%);" scope="col">ACTIONS:</th>
+                <td style="display:flex;justify-content: center;margin-top: 20px;margin-bottom: 20px;background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(193,193,193,1) 100%);">
+                    <div style="text-align: center">
+                    <a style="font-size: 21px;font-weight: bolder;display: flex;justify-content: center;margin-top: 10px;margin-bottom: 10px;width: 120px" class="btn btn-primary container-fluid" href="{{ path('app_user_edit', {'id': user.id}) }}">Editer</a>
+                    <a>{{ include('user/_delete_form.html.twig') }} </a>
+                    </div>
+                </td>
+            </tr>
+
+        {% else %}
+            <tr>
+                <td colspan="7">Il n'y'aucun utilisateurs d'enregistré.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a style="font-size: 21px;font-weight: bolder;display: flex;justify-content: center;margin-top: 10px;margin-bottom: 20px;width: 120px" class="btn btn-primary container-fluid" href="{{ path('app_user_new') }}">Créer nouvel utilisateur</a>
+    <a style="font-size: 21px;font-weight: bolder;display: flex;justify-content: center;margin-top: 10px;margin-bottom: 20px;width: 120px" class="btn btn-secondary container-fluid" href="{{ path('app_accueil') }}">Accueil</a>
+</section>
+    </body>
+{% endblock %}

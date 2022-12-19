@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Connexion!{% endblock %}
+
+{% block body %}
+<section class="jumbotron text-center"
+         style="background: url({{ asset('assets/img/videos/GIF/colorfulbar.gif') }});
+                 background-repeat: no-repeat;
+                 background-size: cover;
+                 margin-bottom: 0px;
+                 font-size: 35px">
+</section>
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <div style="text-align: center;display: flex;flex-direction: column;max-width: 80%;place-items: center;margin-left: 10%;justify-content: center;font-weight: bolder">
+    <h1 style="margin-top: 20px;font-size: 35px;text-decoration-line: underline" class="h3 mb-3 font-weight-normal">CONNECTEZ-VOUS:</h1>
+    <label style="display: flex;justify-content: center" for="inputEmail">Email :</label>
+    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+    <label for="inputPassword">Mot de Passe :</label>
+    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password"required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}">
+
+    <button style="margin-top: 15px;margin-bottom: 15px;line-height: 15px;" class="btn btn-lg btn-primary" type="submit">
+        Connectez-vous
+    </button>
+
+
+        {% if app.user %}
+            <div class="text-center"style="text-decoration-line: underline;font-size: 20px">
+                Vous êtes actuellement connecté en tant que : "{{ app.user.userIdentifier }}"
+                <div><a style="margin-top: 15px;margin-bottom: 15px;line-height: 30px;" href="{{ path('app_logout') }}" class="btn btn-lg btn-danger"> Se Déconnecter</a></div>
+            </div>
+        {% endif %}
+    </div>
+</form>
+{% endblock %}

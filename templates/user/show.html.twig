@@ -1,0 +1,45 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Utilisateur:{% endblock %}
+
+{% block body %}
+    <h1 style="margin-left: 100px;text-align: center;text-decoration-line: underline">Détails Utilisateur :</h1>
+
+    <table class="table" style="display:flex;justify-content: center;font-size: 25px">
+        <tbody>
+            <tr>
+                <th style="text-decoration-line: underline">Id:</th>
+                <td style="text-align: center">{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th style="text-decoration-line: underline">Email:</th>
+                <td style="text-align: center">{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th style="text-decoration-line: underline">Role:</th>
+                <td style="text-align: center">{{ user.roles ? user.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th style="text-decoration-line: underline">Password:</th>
+                <td style="text-align: center">{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th style="text-decoration-line: underline">Nom:</th>
+                <td style="text-align: center"v>{{ user.nom }}</td>
+            </tr>
+            <tr>
+                <th style="text-decoration-line: underline">Prenom:</th>
+                <td style="text-align: center">{{ user.prenom }}</td>
+            </tr>
+            <tr>
+                <th style="text-decoration-line: underline">Pseudo:</th>
+                <td style="text-align: center">{{ user.username }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" style="font-size: 24px;display: flex;justify-content: center" href="{{ path('app_user_edit', {'id': user.id}) }}">Editer</a>
+    <br>
+    <a class="btn btn-secondary" style="display: flex;justify-content: center" href="{{ path('app_user_index') }}">Retour à la liste</a>
+    {{ include('user/_delete_form.html.twig') }}
+{% endblock %}

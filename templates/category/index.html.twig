@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category index{% endblock %}
+
+{% block body %}
+    <section class="jumbotron text-center"
+             style="background: url({{ asset('assets/img/videos/GIF/colorfulbar.gif') }});
+                     background-repeat: no-repeat;
+                     background-size: cover;
+                     margin-bottom: 0px;
+                     font-size: 35px">
+    </section>
+    <h1 style="text-align: center;text-decoration-line: underline">Index des Catégories</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="text-align: center">Id:</th>
+                <th style="text-align: center">Nom :</th>
+                <th style="text-align: center">Actions:</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+
+                <td style="text-align: center">{{ category.id }}</td>
+                <td style="background:radial-gradient(circle,rgba(255,255,255,1)0%,rgba(193,193,193,1)100%);text-align:center">{{ category.name }}</td>
+                <td>
+                    <div style="text-align: center">
+                    <a class="btn btn-primary" href="{{ path('app_category_show', {'id': category.id}) }}">Voir</a>
+                    <a class="btn btn-primary" href="{{ path('app_category_edit', {'id': category.id}) }}">Editer</a>
+                    </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Liste vide.../td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div style="background-color: rgba(211,211,211,0.9);width:100%">
+        <br>
+    <a style="display: flex;flex-wrap: nowrap;justify-content: center" class="btn btn-primary" href="{{ path('app_category_new') }}">Nouvelle Catégorie</a>
+    <br>
+    <a style="display: flex;flex-wrap: nowrap;justify-content: center" class="btn btn-warning" href="{{ path('app_accueil') }}">Accueil</a>
+    <br>
+    <a style="display: flex;flex-wrap: nowrap;justify-content: center" class="btn btn-danger" href="{{ path('app_logout') }}">Déconnexion</a>
+    <br>
+    </div>
+{% endblock %}

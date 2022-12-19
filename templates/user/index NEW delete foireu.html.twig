@@ -1,0 +1,43 @@
+{% extends 'base2.html.twig' %}
+
+ {% block stylesheets %}
+     {{ encore_entry_link_tags('app') }}
+     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+     <link rel="stylesheet" href="{{ asset('assets/css/acc.css') }}">
+     <link rel="stylesheet" href="{{ asset('assets/css/accButtons.css') }}">
+ {% endblock %}
+
+{%  block body %}
+        {% for user in users %}
+            <table class="table-bordered">
+            <tr style="font-weight: bolder;text-decoration-line: underline;background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(193,193,193,1) 100%);">
+
+            <tbody id="tabprod" style="display: flex;flex-direction: column">
+            <tr>
+                <th style="display: flex;flex-wrap: wrap;flex-direction: column;align-items: center" scope="col">Id:</th>
+                <td  style="text-decoration-line: underline;display: flex;flex-wrap: wrap;flex-direction: column;align-items: center">{{ user.id }}</td>
+                <th style="display: flex;flex-wrap: wrap;flex-direction: column;align-items: center" scope="col">Email:</th>
+                <td  style="text-decoration-line: underline;display: flex;flex-wrap: wrap;flex-direction: column;align-items: center">{{ user.email }}</td>
+                <th style="display: flex;flex-wrap: wrap;flex-direction: column;align-items: center" scope="col">Roles:</th>
+                <td  style="text-decoration-line: underline;display: flex;flex-wrap: wrap;flex-direction: column;align-items: center">{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <th style="display: flex;flex-wrap: wrap;flex-direction: column;align-items: center" scope="col">Password:</th>
+                <td style="text-decoration-line: underline;display: flex;flex-wrap: wrap;flex-direction: column;align-items: center">{{ user.password }}</td>
+                <th style="display: flex;flex-wrap: wrap;flex-direction: column;align-items: center" scope="col">Nom:</th>
+                <td style="text-decoration-line: underline;display: flex;flex-wrap: wrap;flex-direction: column;align-items: center">{{ user.nom }}</td>
+                <th style="display: flex;flex-wrap: wrap;flex-direction: column;align-items: center" scope="col">Prénom:</th>
+                <td style="text-decoration-line: underline;display: flex;flex-wrap: wrap;flex-direction: column;align-items: center">{{ user.prenom }}</td>
+                <th style="display: flex;flex-wrap: wrap;flex-direction: column;align-items: center" scope="col">Pseudo:</th>
+                <td style="text-decoration-line: underline;display: flex;flex-wrap: wrap;flex-direction: column;align-items: center">{{ user.username }}</td>
+                <th style="display: flex;flex-wrap: wrap;flex-direction: column;align-items: center;" scope="col">Actions:</th>
+                <td>
+            <a class="btn btn-secondary"   href="{{ path('app_user_edit', {'id': user.id}) }}">Editer</a>
+            <a href="{{ path('app_user_delete', {'id': user.id}) }}" class="btn btn-danger">Supprimer</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_user_new') }}" style="display: flex;width: 100%;margin-bottom: 15px;margin-top:15px;align-items:center;justify-items: center;justify-content: center;" class="btn btn-primary">Ajouter un User</a>
+    <a href="{{ path('app_accueil') }}" style="display: flex;margin-bottom: 15px;margin-top:15px;justify-items: center;width: 100%;align-items:center;justify-content: center;"  class="btn btn-outline-dark">Retour au Accueil</a>
+    <a href="{{ path('app_logout') }}" style="display: flex;margin-bottom: 15px;margin-top:15px;width: 100%;align-items:center;justify-items: center;justify-content: center;"  class="btn btn-outline-danger alert-dark">Déconnexion</a>
+{% endblock %}
